@@ -1,7 +1,7 @@
-# REPLACE THIS WITH TOPIC TITLE
+# NATURAL LANGUAGE PROCESSING
 # Team Members
-1.
-2. 
+1. Joshua Hans
+2. Jack Padalino
 3. 
 
 # Instructions
