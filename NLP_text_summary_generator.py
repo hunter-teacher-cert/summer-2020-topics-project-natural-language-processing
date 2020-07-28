@@ -23,7 +23,6 @@ keywords = ['season','teams','computer','thrift','style','protests']
 
 article_objects = []
 
-
 class Articles:
 
     def __init__(self, name, raw_text_string, cleaned_text_string, formatted_cleaned_text_string, tokenized_word_list, tokenized_sentence_list, word_freq_dict, sentence_score_dict, found_keywords, summary):
@@ -97,7 +96,42 @@ class Articles:
         self.tokenized_word_list = [i.lower() for i in self.tokenized_word_list]
         heapq.heapify(self.tokenized_word_list)
         self.tokenized_word_list = [heapq.heappop(self.tokenized_word_list) for i in range(len(self.tokenized_word_list))]
+     
+    #non recursive binary search
+    def search(self, tokenized_word_list, keyword):
+        low = 0
+        high = len(tokenized_word_list) - 1
+        while low <= high:
+            middle = int((low + high)/ 2)
+            mid = tokenized_word_list[middle]
+            #keyword found
+            if mid == keyword:
+                return True
+            elif mid > keyword:
+                high = middle - 1
+            elif mid < keyword:
+                low = middle + 1
+                    
+    def populate_found_keywords(self):
+        for i in keywords:
+            word_in_list = self.search(self.tokenized_word_list, i)
+            if word_in_list == True:
+                self.found_keywords.append(i)
+            else:
+                continue
 
+'''
+    def populate_found_keywords(self):
+        for i in keywords:
+            try:
+                keyword = self.search(self.tokenized_word_list, i, 0, len(self.tokenized_word_list)-1)
+                if keyword != -1:
+                    self.found_keywords.append(i)
+            except RecursionError:
+                continue
+'''
+
+'''
     def search(self, tokenized_word_list, keyword, low, high):
         mid = int((low + high)/2)
         #keyword found
@@ -112,23 +146,13 @@ class Articles:
         #low and high have crossed: keyword not present
         elif low>high:
             return -1
-
-    def populate_found_keywords(self):
-        for i in keywords:
-            try:
-                keyword = self.search(self.tokenized_word_list, i, 0, len(self.tokenized_word_list)-1)
-                if keyword != -1:
-                    self.found_keywords.append(i)
-            except RecursionError:
-                continue
-
+'''
 
 #create an object for each article in the url_list and add it to article_objects list
 for i in url_list:
     i = Articles(i, "", "", "", None, None, {}, {}, [], "")
     article_objects.append(i)
-
-
+    
 for i in article_objects:
     i.web_scrape()
     i.clean_text_string()
