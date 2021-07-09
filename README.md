@@ -1,9 +1,10 @@
-# REPLACE THIS WITH TOPIC TITLE
+# NATURAL LANGUAGE PROCESSING
 # Team Members
-1.
-2. 
+1. Joshua Hans
+2. Jack Padalino
 3. 
 
 # Instructions
-Add the text content of your lesson/unit plan to this file. Add any extra files and source code to this repository. Make sure to provide any instructions needed to run the code.
+Slide deck available here: https://docs.google.com/presentation/d/1JcN79DyQYJt435dTyIK3ntmzRpKUMU-BCAuNmQ2RNIA/edit?usp=sharing
 
+All code in the slides are in the repo
